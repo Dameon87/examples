@@ -5,5 +5,5 @@ Examples of PHP work
 
 Contents:
 
-* database_class => Simply Database class utilizing mysqli. Great for simple projects.
+* database_class => Simple Database class utilizing mysqli. Great for simple projects.
 * 
