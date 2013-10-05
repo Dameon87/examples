@@ -1,0 +1,35 @@
+Application Name: Media@Home
+Author: Jonathon Bischof with input from John Oliver
+Version: 0.2 Alpha SYMFONY2
+Release Date: N/A
+
+===========
+Description
+===========
+Media @ Home is a full on replacement for Couch Potato, and Sickbeard. It is focused on functionality, with ease of use, and a modernized interface. It is written purely in PHP, with only a simple batch script, and .sh script for cron/scheduled jobs.
+The goal was to focus the development of this alternative on a standalone item that only requires a basic wamp stack. (With no major extra requirements.) It requires PHP, MySQL, and a web server (Apache, nginx, Cherokee, etc.)
+
+
+========
+Location
+========
+http://mah.tech-genius.net
+
+
+============
+Installation
+============
+Extract the contents of the archive (in either zip, or tar.gz format) to the document root of your web server. This works best if not in a sub-directory.
+Once complete, ensure that you've created a database , and have your database name, database user, and password readily available. Proceed to point your browser to the /install directory, and follow the steps.
+
+
+====================
+Known Issues
+====================
+None at this time.
+
+
+===============
+Licensing/Legal
+===============
+This software is released under the GNU General Public License.<br>The GPL can be found here: http://www.gnu.org/licenses/gpl.txt

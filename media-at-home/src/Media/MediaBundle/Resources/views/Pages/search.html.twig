@@ -1,0 +1,63 @@
+{# src/Media/MediaBundle/Resources/views/Pages/search.html.twig #}
+{% extends 'MediaMediaBundle::layout.html.twig' %}
+{% block content %}
+<div class="row-fluid sortable ui-sortable">
+    <div class="box span12">
+	<div class="box-header"><h2><i class="icon-th"></i> NZB Search</h2></div>
+	<div class="box-content">
+        <div class="well">
+	<form class='search' action='/actions/search.php' method='POST' onsubmit="return false">
+<input name='searchfor' type="text" placeholder="Search for..." />
+<span class="input-prepend">
+<span class="add-on">Type</span>
+<select name='type' id='type prependedInput'>
+  <option value='Movies'>Movies</option>
+  <option value='TV'>TV Shows</option>
+  <option value='games-pc'>PC Games</option>
+  <option value='games-mac'>MAC Games</option>
+  <option value='games-linux'>Linux Games</option>
+  <option value='apps-windows'>Windows Applications</option>
+  <option value='apps-mac'>MAC Applications</option>
+  <option value='apps-linux'>Linux Applications</option>
+</select>
+</span>
+&nbsp;
+<span class="input-prepend">
+<span class="add-on">Quality</span>
+<select name='quality' id='quality prependedInput'>
+  <option value='1080P'>1080p</option>
+  <option value='720P'>720p</option>
+  <option value='BRRip'>Blue Ray Rip</option>
+  <option value='DVDR'>DVD Rip</option>
+  <option value='HD'>HD</option>
+  <option value='SD'>SD</option>
+  <option value='3D'>3D</option>
+  <option value='HDTV' id='tv-only'>HDTV</option>
+  <option value='SDTV' id='tv-only'>SDTV</option>
+  <option value='any'>All</option>
+</select>
+</span>
+&nbsp;
+
+<input name='season' class="span1" type="text" placeholder="Season">
+<input name='episode' class="span1" type="text" placeholder="Episode">
+
+<span class="input-prepend">
+<span class="add-on">Provider</span>
+<select name='provider' id='quality prependedInput'>
+  <option value='newznab'>Newznab</option>
+  <option value='nzbmatrix'>NZBMatrix</option>
+</select>
+</span>
+&nbsp;
+<button type='submit' class='btn btn-success' style='position: relative; top: -5px;'>Search</button>
+
+</form>
+</div> <!-- End well -->
+        </div>
+    </div><!--/span-->
+</div>
+
+<div class="well" id="searchresults" style='display: none;'> </div>
+
+{% endblock %}

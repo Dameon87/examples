@@ -1,0 +1,42 @@
+# src/Media/MediaBundle/Resources/config/routing.yml
+MediaMediaBundle_homepage:
+    pattern:  /
+    defaults: { _controller: MediaMediaBundle:Dashboard:index }
+    requirements:
+        _method:  GET
+
+MediaMediaBundle_downloads:
+    pattern:  /downloads
+    defaults: { _controller: MediaMediaBundle:Downloads:index }
+    requirements:
+        _method:  GET
+
+MediaMediaBundle_tvshows:
+    pattern:  /tv-shows
+    defaults: { _controller: MediaMediaBundle:TV:index }
+    requirements:
+        _method:  GET
+
+MediaMediaBundle_tvschedule:
+    pattern:  /tv-schedule
+    defaults: { _controller: MediaMediaBundle:TV:schedule }
+    requirements:
+        _method:  GET
+
+MediaMediaBundle_movies:
+    pattern:  /movies
+    defaults: { _controller: MediaMediaBundle:Movie:index }
+    requirements:
+        _method:  GET
+
+MediaMediaBundle_movieschedule:
+    pattern:  /movie-schedule
+    defaults: { _controller: MediaMediaBundle:Movie:schedule }
+    requirements:
+        _method:  GET
+
+MediaMediaBundle_search:
+    pattern:  /search
+    defaults: { _controller: MediaMediaBundle:Search:index }
+    requirements:
+        _method:  GET

@@ -1,0 +1,70 @@
+{# src/Media/MediaBundle/Resources/views/Pages/downloads.html.twig #}
+{% extends 'MediaMediaBundle::layout.html.twig' %}
+
+{% block title %}
+<a href="#">Downloads</a>
+{% endblock %}
+
+{% block content %}
+<div class="row-fluid sortable ui-sortable">
+    <div class="box span4">
+	<div class="box-header"><h2><i class="icon-th"></i> Change Speed</h2></div>
+            <div class="box-content"><div class="well" style="width: 400px">
+            <center>
+            <a href="/actions/sab.php?action=setspeed&speed=1024" class="btn btn-info">1 MB/s</a>
+            <a href="/actions/sab.php?action=setspeed&speed=2048" class="btn btn-info">2 MB/s</a>
+            <a href="/actions/sab.php?action=setspeed&speed=3072" class="btn btn-info">3 MB/s</a>
+            <a href="/actions/sab.php?action=setspeed&speed=0" class="btn btn-info">Max</a>
+            <a href="/actions/sab.php?action=pauseall" class="btn btn-info"><i class="icon-white icon-pause"></i></a>
+            <br /><br />
+
+            <form name="customspeed" class="customspeed" method="POST" action="/actions/sab.php?action=setspeed">
+                <div class="input-prepend input-append">
+                <span class="add-on">Custom</span>
+                <input type="text" name="speed" class="sabspeed" placeholder="Numbers only!" id="appendedButtonprependedInput" onFocus="$(this).val('')" />
+                <button type="submit" name="submit" class="btn btn-success">Set</button>
+                </div>
+            </form>
+             </center>
+</div></div> <!-- End content -->
+    </div><!--/span-->
+
+    <div class="box span5">
+	<div class="box-header"><h2><i class="icon-th"></i> Quick Info</h2></div>
+            <div class="box-content" style="text-align: center"><div class="well" id="sabquickinfo">[[Sab::info()]]</div></div> <!-- End content -->
+    </div><!--/span-->
+
+    <div class="box span3">
+	<div class="box-header"><h2><i class="icon-th"></i> Quick Config</h2></div>
+            <div class="box-content" style="text-align: center"><div class="well">Some Quick Config Options</div></div> <!-- End content -->
+    </div><!--/span-->
+</div><!--/row -->
+
+
+
+
+<div class="row-fluid sortable ui-sortable">
+				<div class="box span12">
+					<div class="box-header">
+						<h2><i class="icon-th"></i> Download Queue</h2>
+					</div>
+					<div class="box-content">				
+  <div class='tab-pane active' id='downloads'><div id="sabdownloads">[[include 'pages/tables/tablehead.downloads.tpl']] [[Sab::format_queue()]] [[include 'pages/tables/tablefoot.tpl']]</div></div>
+</div>
+				</div><!--/span-->
+			
+			</div>
+
+<div class="row-fluid sortable ui-sortable">
+				<div class="box span12">
+					<div class="box-header">
+						<h2><i class="icon-th"></i> Download History</h2>
+					</div>
+					<div class="box-content">
+  <div class='tab-pane' id='history'><div id="sabhistory">[[include 'pages/tables/tablehead.history.tpl']] [[Sab::format_history()]] [[include 'pages/tables/tablefoot.tpl']]</div></div>
+
+</div>
+				</div><!--/span-->
+			
+			</div>
+{% endblock %}

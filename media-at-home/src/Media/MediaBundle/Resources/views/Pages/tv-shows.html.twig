@@ -1,0 +1,48 @@
+{# src/Media/MediaBundle/Resources/views/Pages/tv-shows.html.twig #}
+{% extends 'MediaMediaBundle::layout.html.twig' %}
+
+{% block title %}
+TV Shows
+{% endblock %}
+
+{% block content %}
+<!-- Add a show modal/button. Can be put anywhere. -->
+[[include 'pages/add_a_show.tpl']]
+<!-- End add a show modal/button. -->
+
+<div class="row-fluid">
+				
+				<div class="box span12">
+					<div class="box-header">
+						<h2><i class="icon-th"></i> Shows</h2>
+					</div>
+					<div class="box-content">
+						<ul class="nav tab-menu nav-tabs" id="myTab">
+                                                        <li class="active"><a href="#shows">All Shows</a></li>
+						</ul>
+						 
+						<div class='tab-content'>
+  							<div class='tab-pane active' id='shows'>
+
+							<table class="table table-striped table-bordered bootstrap-datatable datatable">
+								<thead>
+    								<tr>
+    									<th style="width: 200px;">Next Episode</th>
+    									<th>Title</th>
+    									<th>Network</th>
+    									<th>Quality</th>
+    									<th>Episodes</th>
+    									<th>Active</th>
+    								</tr>
+    							</thead>
+								<tbody>
+								{{ shows|raw }}
+								</tbody>
+           	 				</table>
+							</div>
+						</div>
+				</div><!--/span-->
+			
+			</div>
+
+{% endblock %}
