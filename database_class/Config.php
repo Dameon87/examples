@@ -6,11 +6,12 @@
 * @license http://www.gnu.org/licenses/gpl-2.0.html
 */
 class Config {
-	private config_file = 'config.ini';
+	private $config_file = 'config.ini';
+	public $config;
+
 	function __construct() {
 		$this->config = parse_ini_file($config_file, true);
 	}
-	public $config;
 	// This example simply assumes the configuration file is config.ini, located in the same directory.
 	public function openConfig() {
 		$this->config = parse_ini_file($config_file, true);

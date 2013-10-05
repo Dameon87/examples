@@ -12,7 +12,6 @@ if(class_exists('Database') != true) {
 		public $last_query;
 		private $magic_quotes_active;
 		private $real_escape_string_exists;
-		private $config_class_exists;
 		private $server;
 		private $user;
 		private $pass;
@@ -21,10 +20,12 @@ if(class_exists('Database') != true) {
 
 		function __construct() {
 			// Our constructor
+			if (!class_exists('Config')) {
+                require_once('Config.php');
+            }
 			$this->open_connection();
 			$this->magic_quotes_active = get_magic_quotes_gpc();
 			$this->real_escape_string_exists = function_exists( "mysqli_real_escape_string" );
-			$this->config_class_exists = class_exists('Config');
 		}
 
 		function __destruct() {
@@ -43,7 +44,7 @@ if(class_exists('Database') != true) {
 			$database = Config::getConfig('Database', 'database');
 			$this->connection = mysqli_connect($server, $user, $pass, $database);
 			if (!$this->connection) {
-				die("Database connection failed: " . mysqli_error());
+				die("Database connection failed: " . mysqli_error($this->connection));
 			}
 		}
 
@@ -58,7 +59,7 @@ if(class_exists('Database') != true) {
 		public function query($sql) {
 			// Executes a query, and then confirms it; returning the result set.
 			$this->last_query = $sql;
-			$result = mysqli_query($sql, $this->connection);
+			$result = mysqli_query($this->connection, $sql);
 			$this->confirm_query($result);
 			return $result;
 		}
@@ -66,7 +67,7 @@ if(class_exists('Database') != true) {
 		private function confirm_query($result) {
 			// Confirms the query executed successfully, or returns the error associated.
 			if (!$result) {
-	    		$output = "Database query failed: <br />" . mysqli_error() . "<br />";
+	    		$output = "Database query failed: <br />" . mysqli_error($this->connection) . "<br />";
 	    		// Uncomment the next line if you wish to see the query executed with the error.
 	    		//$output .= "Last Query {$this->last_query}";
 	    		die($output);
@@ -94,7 +95,7 @@ if(class_exists('Database') != true) {
 			// Note: magic_quotes has been removed in PHP 5.4.
 			if ($this->real_escape_string_exists) {
 				if ($this->magic_quotes_active) { $value = stripslashes($value); }
-				$value = mysqli_real_escape_string($value);
+				$value = mysqli_real_escape_string($this->connection, $value);
 			} else {
 				if (!$this->magic_quotes_active) { $value = addslashes($value); }
 			}
@@ -118,14 +119,15 @@ if(class_exists('Database') != true) {
 
 	}
 }
-
+//require_once('Config.php');
 global $db;
 $db = new Database();
 //Insert Tests here if desired.
 //Sample insert
 $sometable = 'test';
+$somename = $db->prep_string("Jonathon Bischof");
 $sometext = $db->prep_string("It's simple isn't it?");
-$somequery = $db->query("INSERT INTO '{$sometable}' (name, bio, date) VALUES('{$name}', '{$sometext}', NOW() )");
+$somequery = $db->query("INSERT INTO {$sometable} (name, bio, date) VALUES('{$somename}', '{$sometext}', NOW() )");
 // Grab the id of the inserted item.
 $someid = $db->insert_id();
 // Fetch an object by using the id.
